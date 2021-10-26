@@ -8,85 +8,57 @@
 <!--
 Обязательное задание.
 
-Необходимо реализовать четыре функции, каждая функция должна принимать по два
-числа и выполнять одну из операций (каждая функция выполняет одну из них):
-1. Сложение
-2. Разность
-3. Умножение
-4. Деление
-
-Необходимо сделать так, чтобы функция вернула число, например выражение
-`console.log(sum(2, 6));` должно вывести число 8 в консоль (sum - функция
-сложения в данном примере, ваши названия функций могут отличаться).
-
-Округлять значения, которые возвращают функции не нужно, однако, обратите
-внимание на разность, функция должна вычесть из большего числа меньшее, либо
-вернуть 0, если числа равны.
-
-Функциям всегда передаются корректные числа, проверки на NaN, Infinity делать
-не нужно.
-
-Необходимо для всех функций прописать комментарии jsdoc https://jsdoc.app/.
+1. Необходимо вывести в консоль массив продуктов в котором есть хоть одна
+фотография используя метод filter. Исходные данные - массив products.
+2. Необходимо отсортировать массив products используя метод sort по цене,
+начиная с самой маленькой, заканчивая самой большой ценой, после чего вывести
+отсортированный массив в консоль.
 -->
 <script>
   "use strict";
 
-  console.log(getSum(2, 6));
+  const products = [
+    {
+      id: 3,
+      price: 127,
+      photos: [
+        "1.jpg",
+        "2.jpg",
+      ],
+    },
+    {
+      id: 5,
+      price: 499,
+      photos: [],
+    },
+    {
+      id: 10,
+      price: 26,
+      photos: [
+        "3.jpg",
+      ],
+    },
+    {
+      id: 8,
+      price: 78,
+    },
+  ];
 
-  /**
-  * Считаем сумму аргументов
-  * @param {number} a - первое число
-  * @param {number} b - второе число
-  * @return {number} - сумма
-  */
+  const photos = products.filter(function(prod) {
+    return prod.photos && prod.photos.length !== 0;
+   })
+  console.log(photos);
 
-  function getSum(a, b) {
-  return a + b;
+  const sortedProducts = products.sort(function(a, b) {
+  if (a.price < b.price) {
+  return -1;
   }
-
-  console.log(getDif(2, 6));
-
-  /**
-  * Считаем разность аргументов
-  * @param {number} a - первое число
-  * @param {number} b - второе число
-  * @return {number} - разность
-  */
-
-  function getDif(a, b) {
-  if (a > b) {
-  return a - b;
-  } else {
-  return b - a;
+  if (a.price > b.price) {
+  return 1;
   }
-  }
-
-  console.log(getMult(2, 6));
-
-  /**
-  * Считаем произведение аргументов
-  * @param {number} a - первое число
-  * @param {number} b - второе число
-  * @return {number} - произведение
-  */
-
-  function getMult(a, b) {
-  return a * b;
-  }
-
-  console.log(getDiv(2, 6));
-
-  /**
-  * Считаем частное аргументов
-  * @param {number} a - первое число
-  * @param {number} b - второе число
-  * @return {number} - частное
-  */
-
-  function getDiv(a, b) {
-  return a / b;
-  }
-
+  return 0;
+  });
+  console.log(sortedProducts);
 </script>
 </body>
 </html>
